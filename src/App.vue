@@ -16,41 +16,19 @@
       Dove si svolgerà l' evento?
     </h3>
    <BaseInput label="Luogo" v-model="event.location"></BaseInput>
-  <base-select label="Seleziona categoria" v-model="event.category" :options="categories"></base-select>
+  <BaseSelect label="Seleziona categoria" v-model="event.categories" :options="categories"></BaseSelect>
 
     <h3 class="subtitle is-3">
       Animali ammessi
     </h3>
-    <div class="field">
-      <div class="control">
-        <label class="radio" >
-          <input  type="radio" name="animals"  v-model="event.animals" :value="1">
-        Si
-        </label>
-        <label class="radio" >
-          <input  type="radio" name="animals" v-model="event.animals" :value="0">
-          No
-        </label>
-      </div>
-    </div>
-
+    <BaseRadioButton label="Si" v-model="event.anuimals" :value="1"></BaseRadioButton>
+    <BaseRadioButton label="No" v-model="event.anuimals" :value="0"></BaseRadioButton>
     <h3 class="subtitle is-3">
      Extra
     </h3>
-    <div class="field">
-      <div class="control">
-        <label class="checkbox mr-5">
-          <input  type="checkbox"  v-model="event.extra.music">
-         Live Music
-        </label>
+    <BaseCheckbox label="Musica Live" v-model="event.extra.music"></BaseCheckbox>
 
-        <label class="radio" >
-          <input  type="checkbox" v-model="event.extra.show">
-         Spettacolo
-        </label>
-      </div>
-    </div>
-
+<BaseCheckbox label="Spettacolo" v-model="event.extra.show"></BaseCheckbox>
   <button class="button is-info" type="submit">Crea</button>
   </form>
 </div>
@@ -59,9 +37,13 @@
 <script>
 import BaseInput from "@/components/BaseInput";
 import BaseSelect from "@/components/baseSelect";
+import BaseCheckbox from "@/components/BaseCheckbox";
+import BaseRadioButton from "@/components/BaseRadioButton";
 export default {
   name: 'App',
   components: {
+    BaseRadioButton,
+    BaseCheckbox: BaseCheckbox,
     BaseSelect,
     BaseInput
   },
@@ -71,7 +53,6 @@ export default {
         name:'',
         description: '',
         animals: 1,
-        category: '',
         location:'',
         extra:{
           music:false,
